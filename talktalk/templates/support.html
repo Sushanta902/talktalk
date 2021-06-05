@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Support
+{% endblock %}
+
+{% block main %}
+
+
+
+<br>
+
+<b>
+    <form action="/feedback" method="POST">
+<input type="text"  autocomplete="off"   autofocus class="form-control" name="comment" id="comment" placeholder="Comment and Feedback"></input></b><br>
+<input type= "submit" disabled="true"  autocomplete="off"  autofocus id = "but" class="btn btn-primary"></input>
+      </form>
+      {% if request.method == "POST" %}
+      <br>
+      <br>
+
+
+     <b>Comment posted sucessfully. Check out comments in <u><a href="/comment">feedbacks section.</a></u></b>
+
+
+       {%endif%}
+
+
+       <script>
+
+       	let comment = document.getElementById('comment')
+       	let btn = document.getElementById('but')
+       	comment.addEventListener('keyup',()=>{
+          if (comment.value.length === 0) btn.disabled = true
+       	else btn.disabled = false; 
+       	});
+       		
+       </script>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Support
+{% endblock %}
+
+{% block main %}
+
+<h3>Join room</h3>
+<br>
+<br>
+<form action="/join" method="POST">
+<input type="text"  autocomplete="off"   autofocus class="form-control" name="jgroup" id="jgroup" placeholder="Name of group to join"></input></b><br>
+</input></b>
+<input type= "submit" value="Join" disabled="true"  autocomplete="off"  autofocus id = "but" class="btn btn-primary"></input>
+ </form>
+ 
+<br>
+{% if (broadcast == 2 ) %}
+  <center>
+    <br>
+            <header  style="color:white;box-shadow: 5px 7px 15px black;border: 2px solid red;border-radius: 50px;background-color: red;width:220px">
+
+                  &#9997 You are not included
+
+            </header>
+            </center>
+ {% endif %}
+
+
+
+ {% if (broadcast == 3 ) %}
+  <center>
+    <br>
+            <header  style="color:white;box-shadow: 5px 7px 15px black;border: 2px solid red;border-radius: 50px;background-color: red;width:220px">
+
+                  &#9997 Not such group
+
+            </header>
+            </center>
+ {% endif %}
+     <script>
+
+        let comment = document.getElementById('jgroup')
+        let btn = document.getElementById('but')
+        comment.addEventListener('keyup',()=>{
+          if (comment.value.length === 0) btn.disabled = true
+        else btn.disabled = false; 
+        });
+          
+       </script>
+{% endblock %}

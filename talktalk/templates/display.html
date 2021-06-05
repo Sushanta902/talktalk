@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Support
+{% endblock %}
+
+{% block main %}
+
+    
+
+{% for i in range(con) %}
+<br>
+<center>
+{% if session.user_id %}
+<div class="container" style="border-radius: 0px;margin: 0px;">
+    <form action="/delete" method="POST">
+        <input type="hidden" class="form-control" name="check_id" value="{{a[i]['id']}}">
+        <input type="hidden" class="form-control" name="sn" value="{{a[i]['sn']}}">
+        {%if a[i]['id']== b%}
+        <button style="float: right" onclick ="btn()" type="submit" class="btn btn-link">&#10060</button>
+        {%endif%}
+    </form>
+
+
+{% endif%}
+<div class = "container" style="visibility: hidden;" scope="col">{{a[i]['sn']}}</div> <div scope="col"><label class="time-right" style= "font-size: 11px"> ({{a[i]['datetime']}})</label><label class ="time-left" style="color:black;" style="font-size: 80px"><b> {{a[i]['username']}}</b></label>
+ <br><div style="color:black;font-size:25px;font-family: 'Roboto', sans-serif;text-align: left">{{a[i]['comment']}}</div></div>  
+
+
+
+
+
+
+{% if session.user_id%}
+<div scope="col" id="updateshow" > 
+    <form action="/update" method="POST">
+        <input type="hidden" class="form-control" name="check_id" value="{{a[i]['id']}}">
+        <input type="hidden" class="form-control" name="sn" value="{{a[i]['sn']}}">
+        {%if a[i]['id']== b%}
+        <input type="text"  placeholder="Edit" class="form-control" name="comment"><br>
+       
+        <button style="float: right;" type="submit"  id="btn" class="btn btn-primary" >OK</button>
+ {%endif%}
+    </form>
+{% endif%}
+
+
+
+</div>
+
+</div>
+</center>
+<br>
+
+{% endfor %}
+
+
+
+<script>
+  function showeverything()
+  {
+    document.getElementById('btnshow').style.display="none";
+
+  }
+
+  function showbtn()
+  {
+    document.getElementById('displaybtn').style.display="block";
+
+  }
+  function btn() {
+     alert("Are you sure to delete comment !")
+  }
+</script>
+
+ 
+{% endblock %}
